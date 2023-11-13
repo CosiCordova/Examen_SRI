@@ -110,8 +110,8 @@ Para esto puedes crear una red personalizada, un volumen para almacenar la confi
         Muestra en los logs que el servicio arranca correctamente
    
 Primero creamos el docker-compose:
-
-services:
+```
+  services:
   bind9:
     image: ubuntu/bind9
     container_name: asir_examen
@@ -126,24 +126,53 @@ services:
       - ./zonas:/var/lib/bind
     environment:
       - TZ=Europe/Paris
-networks:
+  networks:
   bind9_subnet: 
     external: true
-
+```
    
 Luego configuramos la zona
 
-$TTL 38400 ; 10 hours 40 minutes
-@       IN SOA  ns.tiendadeelectronica.int. some.email.address. (
+  ```
+  $TTL 38400 ; 10 hours 40 minutes
+  @       IN SOA  ns.tiendadeelectronica.int. some.email.address. (
                         20231009  ; serial
                         10800     ; refresh (3 hours)
                         3600      ; retry (1 hour)
                         604800    ; expire (1 week)
                         38400     ; minimum (10 hours 40 minutes)
                         )
-@       IN NS   ns.tiendadeelectronica.int.
-www     IN A    172.16.0.1
-owncloud IN CNAME www
-txt     IN TXT  "1234ASDF"
+  @       IN NS   ns.tiendadeelectronica.int.
+  www     IN A    172.16.0.1
+  owncloud IN CNAME www
+  txt     IN TXT  "1234ASDF"
+```
+
+Para crear el contenedor colocamos 
+
+  docker-compose up
+
+Para comprobar su status colocamos 
+
+ systemctl status bind9
+
+Para instalar dns
+
+ apt install dnsutils
+
+Para comprobar que el contenedor va de maravilla ponemos:
+
+ dig @10.0.2.15 ns.tiendadeelectronic.int
 
    ## 10. Realiza el apartado 9 en la máquina virtual con DNS
+
+El apartado 9 en una maquina virtual lleva los mismo pasos, sin embargo los archivos de configuracion se guardan en:
+
+ /Ubuntu/etc/bind
+
+Mienstras que los de zona se guardan en:
+
+ /Ubuntu/var/lib/bind
+
+Una vez colocado todo utilizaremos los mismos comadnos para realizar nuestro contenedor.
+
