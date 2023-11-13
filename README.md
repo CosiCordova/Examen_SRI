@@ -120,7 +120,7 @@ Primero creamos el docker-compose:
       - 53:53/udp
     networks:
       bind9_subnet:
-        ipv4_address: 172.28.5.1
+        ipv4_address: 172.16.0.1
     volumes:
       - ./conf:/etc/bind
       - ./zonas:/var/lib/bind
