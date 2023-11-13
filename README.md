@@ -5,25 +5,25 @@ Contesta a las preguntas, justificandolas, en un README.md
   ##  1. Explica métodos para 'abrir' una consola/shell a un contenedor que se está ejecutando
 
     
-    Para abrir una consola a un contenedor que se esta ejecutando en el Visual Studio Code es necesario estar en el apratado docker y con un click derecho seleccionar abrir shell.
+Para abrir una consola a un contenedor que se esta ejecutando en el Visual Studio Code es necesario estar en el apratado docker y con un click derecho seleccionar abrir shell.
 
-    En la terminal es necesario utilizar un comando:
+En la terminal es necesario utilizar un comando:
 
-    '''sh
+     ```sh 
      docker exec -it nombre_conrtenedor
-    '''
+     ```
 
   ## 2. En el contenedor anterior con que opciones tiene que haber sido arrancado para poder interactuar con las entradas y salidas del contenedor
 
-    El contenedor anterior debio ser arrancado con las opciones de imagen utilizada, puertos, volumenes y redes 
+El contenedor anterior debio ser arrancado con las opciones de imagen utilizada, puertos, volumenes y redes 
 
   ## 3. ¿Cómo sería un fichero docker-compose para que dos contenedores se comuniquen entre si en una red solo de ellos?
     
-    Para que se comuniquen entre si en una red solo de ellos es necesario crear la red y luego lanzar el docker compose o en su defecto lanzar el docker compose con la creacion de la red en su interior:
+Para que se comuniquen entre si en una red solo de ellos es necesario crear la red y luego lanzar el docker compose o en su defecto lanzar el docker compose con la creacion de la red en su interior:
 
     Este seria un docker compose con red externa:
 
-    '''sh
+    ```sh
     services:
          bind9:
              image: ubuntu/bind9
@@ -52,20 +52,48 @@ Contesta a las preguntas, justificandolas, en un README.md
     networks:
          bind9_subnet: 
              external: true
-    '''
+    ```
     
 
    ## 4. ¿Qué hay que añadir al fichero anterior para que un contenedor tenga la IP fija?
    
+El contenedor anterior ya tiene programada una ip fija, de no querer colocarla se tendria que quitar el apartado ipv4, en donde esta networks.
+
    ## 5. ¿Que comando de consola puedo usar para saber las ips de los contenedores anteriores? Filtra todo lo que puedas la salida.
+
+
     
    ## 6. ¿Cual es la funcionalidad del apartado "ports" en docker compose?
     
    ## 7. ¿Para que sirve el registro CNAME? Pon un ejemplo
     
+
+El CNAME sirve para que un dominio sea el alias de otro, se suele utilizar para añadir subdominios nuevos a uno que ya existe por ejemplo:
+
+Un registro CNAME suele tener la siguiente forma:
+
+ ```sh
+www.example.net. CNAME www.example.com.
+ ```
+
+Para que la referencia a través de CNAME funcione, tiene que haber también un registro A o AAAA en el archivo de zona:
+
+ ```sh
+$TTL 11107
+www.example.com.	IN	A		93.184.216.34
+www.example.com.	IN	AAAA		2606:2800:220:1:248:1893:25c8:1946
+www.example.net.	IN	CNAME		www.example.com.
+www.example.org.	IN	CNAME		www.example.com.
+ ```
+
+Ambos registros CNAME remiten al registro A o AAAA. 
+
+El “time to live” se aplica a la zona entera (lo cual se indica con el símbolo del dólar) y es de 11107 segundos, es decir, de algo más de tres horas.
+
     
    ## 8. ¿Como puedo hacer para que la configuración de un contenedor DNS no se borre si creo otro contenedor?
    
+   Para esto puedes crear una red personalizada, un volumen para almacenar la configuracion y el servicio que utilizara la red personalizada junto con el volumen.
    
    ## 9. Añade una zona tiendadeelectronica.int en tu docker DNS que tenga
         www a la IP 172.16.0.1
