@@ -9,9 +9,9 @@ Para abrir una consola a un contenedor que se esta ejecutando en el Visual Studi
 
 En la terminal es necesario utilizar un comando:
 
-     ```sh 
+     
      docker exec -it nombre_conrtenedor
-     ```
+     
 
   ## 2. En el contenedor anterior con que opciones tiene que haber sido arrancado para poder interactuar con las entradas y salidas del contenedor
 
