@@ -149,30 +149,30 @@ Luego configuramos la zona
 ```
 
 Para crear el contenedor colocamos 
-
+```
   docker-compose up
-
+```
 Para comprobar su status colocamos 
-
+```
  systemctl status bind9
-
+```
 Para instalar dns
-
+```
  apt install dnsutils
-
+```
 Para comprobar que el contenedor va de maravilla ponemos:
-
+```
  dig @10.0.2.15 ns.tiendadeelectronic.int
-
+```
    ## 10. Realiza el apartado 9 en la máquina virtual con DNS
 
 El apartado 9 en una maquina virtual lleva los mismo pasos, sin embargo los archivos de configuracion se guardan en:
-
+```
  /Ubuntu/etc/bind
-
+```
 Mienstras que los de zona se guardan en:
-
+```
  /Ubuntu/var/lib/bind
-
+```
 Una vez colocado todo utilizaremos los mismos comadnos para realizar nuestro contenedor.
 
