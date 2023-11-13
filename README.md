@@ -9,9 +9,9 @@ Contesta a las preguntas, justificandolas, en un README.md
 
     En la terminal es necesario utilizar un comando:
 
-    ```sh
+    '''sh
      docker exec -it nombre_conrtenedor
-    ```
+    '''
 
   ## 2. En el contenedor anterior con que opciones tiene que haber sido arrancado para poder interactuar con las entradas y salidas del contenedor
 
@@ -19,7 +19,42 @@ Contesta a las preguntas, justificandolas, en un README.md
 
   ## 3. ¿Cómo sería un fichero docker-compose para que dos contenedores se comuniquen entre si en una red solo de ellos?
     
+    Para que se comuniquen entre si en una red solo de ellos es necesario crear la red y luego lanzar el docker compose o en su defecto lanzar el docker compose con la creacion de la red en su interior:
+
+    Este seria un docker compose con red externa:
+
+    '''sh
+    services:
+         bind9:
+             image: ubuntu/bind9
+             container_name: asir_bind9
+             ports:
+                 - 53:53/tcp
+                 - 53:53/udp
+             networks:
+                 bind9_subnet:
+                     ipv4_address: 172.28.5.1
+             volumes:
+                     - ./conf:/etc/bind
+                     - ./zonas:/var/lib/bind
+             environment:
+                     - TZ=Europe/Paris  
+                     services:
+     cliente:
+         container_name: asir_cliente
+         image: alpine
+         tty: true
+         stdin_open: true
+         networks: 
+             - bind9_subnet
+         dns:
+             - 172.28.5.1  
+    networks:
+         bind9_subnet: 
+             external: true
+    '''
     
+
    ## 4. ¿Qué hay que añadir al fichero anterior para que un contenedor tenga la IP fija?
    
    ## 5. ¿Que comando de consola puedo usar para saber las ips de los contenedores anteriores? Filtra todo lo que puedas la salida.
