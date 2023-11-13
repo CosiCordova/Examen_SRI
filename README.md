@@ -23,7 +23,7 @@ Para que se comuniquen entre si en una red solo de ellos es necesario crear la r
 
     Este seria un docker compose con red externa:
 
-    ```sh
+    
     services:
          bind9:
              image: ubuntu/bind9
@@ -52,7 +52,7 @@ Para que se comuniquen entre si en una red solo de ellos es necesario crear la r
     networks:
          bind9_subnet: 
              external: true
-    ```
+    
     
 
    ## 4. ¿Qué hay que añadir al fichero anterior para que un contenedor tenga la IP fija?
@@ -61,9 +61,14 @@ El contenedor anterior ya tiene programada una ip fija, de no querer colocarla s
 
    ## 5. ¿Que comando de consola puedo usar para saber las ips de los contenedores anteriores? Filtra todo lo que puedas la salida.
 
+Puedes utilizar el siguiente comando:
+
+     docker inspect -q --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -q)
 
     
    ## 6. ¿Cual es la funcionalidad del apartado "ports" en docker compose?
+
+Sirve para especificar como los puertos de los contenedores se le asignaran al host.
     
    ## 7. ¿Para que sirve el registro CNAME? Pon un ejemplo
     
@@ -72,30 +77,32 @@ El CNAME sirve para que un dominio sea el alias de otro, se suele utilizar para 
 
 Un registro CNAME suele tener la siguiente forma:
 
- ```sh
-www.example.net. CNAME www.example.com.
- ```
+ 
+  www.example.net. CNAME www.example.com.
+ 
 
 Para que la referencia a través de CNAME funcione, tiene que haber también un registro A o AAAA en el archivo de zona:
 
- ```sh
+ 
 $TTL 11107
 www.example.com.	IN	A		93.184.216.34
 www.example.com.	IN	AAAA		2606:2800:220:1:248:1893:25c8:1946
 www.example.net.	IN	CNAME		www.example.com.
 www.example.org.	IN	CNAME		www.example.com.
- ```
+ 
 
 Ambos registros CNAME remiten al registro A o AAAA. 
 
 El “time to live” se aplica a la zona entera (lo cual se indica con el símbolo del dólar) y es de 11107 segundos, es decir, de algo más de tres horas.
 
     
-   ## 8. ¿Como puedo hacer para que la configuración de un contenedor DNS no se borre si creo otro contenedor?
+  ## 8. ¿Como puedo hacer para que la configuración de un contenedor DNS no se borre si creo otro contenedor?
    
-   Para esto puedes crear una red personalizada, un volumen para almacenar la configuracion y el servicio que utilizara la red personalizada junto con el volumen.
+Para esto puedes crear una red personalizada, un volumen para almacenar la configuracion y el servicio que utilizara la red personalizada junto con el volumen.
    
-   ## 9. Añade una zona tiendadeelectronica.int en tu docker DNS que tenga
+  ## 9. Añade una zona tiendadeelectronica.int en tu docker 
+   
+   DNS que tenga
         www a la IP 172.16.0.1
         owncloud sea un CNAME de www
         un registro de texto con el contenido "1234ASDF"
