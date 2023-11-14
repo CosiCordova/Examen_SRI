@@ -188,4 +188,14 @@ Para pararlo podemos utilizar:
 ```
  systemctl stop bind9
 ```
+
+En la siguiente imagen podemos apreciar los logs y como el servidor esta corriendo.
 ![Imagen no carga](https://github.com/CosiCordova/Examen_SRI/blob/main/Prueba_server_activo.png)
+
+A continuacion adjunto los 3 de dig:
+
+![Imagen no carga](https://github.com/CosiCordova/Examen_SRI/blob/main/Dig_1.png)
+
+![Imagen no carga](https://github.com/CosiCordova/Examen_SRI/blob/main/Dig_2.png)
+
+![Imagen no carga](https://github.com/CosiCordova/Examen_SRI/blob/main/Dig_3.png)
