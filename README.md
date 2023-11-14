@@ -174,5 +174,18 @@ Mienstras que los de zona se guardan en:
 ```
  /Ubuntu/var/lib/bind
 ```
-Una vez colocado todo utilizaremos los mismos comadnos para realizar nuestro contenedor.
+Una vez colocado todo utilizaremos los siguientes comadnos para realizar nuestro contenedor.
+
+```
+ systemctl start bind9
+```
+
+```
+ systemctl status bind9
+```
+
+Para pararlo podemos utilizar:
+```
+ systemctl stop bind9
+```
 
