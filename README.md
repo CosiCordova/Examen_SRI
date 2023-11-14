@@ -152,14 +152,16 @@ Para crear el contenedor colocamos
 ```
   docker-compose up
 ```
-Para comprobar su status colocamos 
-```
- systemctl status bind9
-```
+![Imagen no carga](https://github.com/CosiCordova/Examen_SRI/blob/main/Docker_inicial.png)
+
 Para instalar dns
 ```
  apt install dnsutils
 ```
+Para ver los logs nos dirigimos al docker en "visual studio code", colocamos el apartadop del docker, vamos a click derecho en nustro contenedor y seleccionamos "View Logs"
+
+![Imagen no carga](https://github.com/CosiCordova/Examen_SRI/blob/main/Imagen_logs_docker.png)
+
 Para comprobar que el contenedor va de maravilla ponemos:
 ```
  dig @10.0.2.15 ns.tiendadeelectronic.int
