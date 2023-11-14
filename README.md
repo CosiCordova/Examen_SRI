@@ -169,7 +169,7 @@ Para comprobar que el contenedor va de maravilla ponemos:
 
 A mi particularmente me da error por un motivo que desconozco, sin embargo adjunto capture igualmente de un intento de consulta.
 
-![Imagen no carga](https://github.com/CosiCordova/Examen_SRI/blob/main/Dig_docker.png)
+![Imagen no carga](https://github.com/CosiCordova/Examen_SRI/blob/main/DigDocker.png)
 
    ## 10. Realiza el apartado 9 en la máquina virtual con DNS
 
