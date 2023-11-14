@@ -164,7 +164,7 @@ Para ver los logs nos dirigimos al docker en "visual studio code", colocamos el 
 
 Para comprobar que el contenedor va de maravilla ponemos:
 ```
- dig @10.0.2.15 ns.tiendadeelectronic.int
+ dig @172.17.0.1 ns.tiendadeelectronica.int
 ```
 
 A mi particularmente me da error por un motivo que desconozco, sin embargo adjunto capture igualmente de un intento de consulta.
