@@ -188,4 +188,4 @@ Para pararlo podemos utilizar:
 ```
  systemctl stop bind9
 ```
-
+![Imagen no carga](https://github.com/CosiCordova/Examen_SRI/blob/main/Prueba_server_activo.png)
